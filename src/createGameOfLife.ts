@@ -39,8 +39,8 @@ export function createGameOfLife(el: HTMLElement) {
     gameIsRunning = true;
     btn.innerHTML = "Stop";
     timer = setInterval(() => {
-      let g = document.querySelector(".activ");
-      if (g === null) {
+      let activeСell = document.querySelector(".activ");
+      if (activeСell === null) {
         stopGame();
       } else startLife();
     }, inputRange.valueAsNumber * 100);

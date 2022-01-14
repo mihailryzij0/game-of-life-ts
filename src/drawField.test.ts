@@ -1,4 +1,5 @@
-import {drawField} from './drawField'
+import { drawField } from "./drawField";
+
 describe("createGameOfLife", () => {
   let el;
   beforeEach(() => {
@@ -16,11 +17,10 @@ describe("createGameOfLife", () => {
   });
   it("adding a class when clicking on a cell and deleting", () => {
     drawField(el);
-    let tableEl = document.querySelectorAll("td");
-    tableEl[5].dispatchEvent(new Event("click"))
+    const tableEl = document.querySelectorAll("td");
+    tableEl[5].dispatchEvent(new Event("click"));
     expect(tableEl[5].classList.contains("activ")).toBeTruthy();
-    tableEl[5].dispatchEvent(new Event("click"))
+    tableEl[5].dispatchEvent(new Event("click"));
     expect(tableEl[5].classList.contains("activ")).toBeFalsy();
   });
-   
 });
