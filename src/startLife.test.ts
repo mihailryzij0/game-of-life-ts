@@ -13,7 +13,7 @@ describe("drawField", () => {
   });
 
   it("checking class changes", () => {
-    drawField(el);
+    drawField(el, 20, 20);
     const tableEl = document.querySelectorAll("td");
     tableEl[130].dispatchEvent(new Event("click"));
     tableEl[150].dispatchEvent(new Event("click"));

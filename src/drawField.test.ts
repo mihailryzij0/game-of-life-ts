@@ -12,12 +12,12 @@ describe("createGameOfLife", () => {
   });
 
   it("building a playing field", () => {
-    drawField(el);
+    drawField(el, 20, 20);
     expect(document.querySelector("td")).toBeTruthy();
     expect(document.querySelectorAll("tr").length).toBe(20);
   });
   it("adding a class when clicking on a cell and deleting", () => {
-    drawField(el);
+    drawField(el, 20, 20);
     const tableEl = document.querySelectorAll("td");
     tableEl[5].dispatchEvent(new Event("click"));
     expect(tableEl[5].classList.contains("activ")).toBeTruthy();

@@ -14,12 +14,20 @@ export function createGameOfLife(el: HTMLElement) {
   let width = inputWidth.valueAsNumber;
   let haight = inputHaight.valueAsNumber;
   inputWidth.addEventListener("input", () => {
-    width = inputWidth.valueAsNumber;
-    drawField(field, haight, width, objActivCell);
+    if (inputWidth.value === "") {
+      width = 10;
+    } else width = +inputWidth.value;
+    if (width < 10) width = 10;
+    if (width > 30) width = 30;
+    else drawField(field, haight, width, objActivCell);
   });
   inputHaight.addEventListener("input", () => {
-    haight = inputHaight.valueAsNumber;
-    drawField(field, haight, width, objActivCell);
+    if (inputHaight.value === "") {
+      haight = 10;
+    } else haight = +inputHaight.value;
+    if (haight < 10) haight = 10;
+    if (haight > 30) haight = 30;
+    else drawField(field, haight, width, objActivCell);
   });
 
   drawField(field, haight, width);

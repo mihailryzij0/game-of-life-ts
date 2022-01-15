@@ -50,46 +50,46 @@ describe("", () => {
     // @ts-ignore
     document.querySelector("div").innerHTML = null;
   });
-  it("", () => {
-    // const element= el.querySelector(".game");
+  it("changing the speed of work", () => {
     createGameOfLife(el);
     expect(document.querySelector(".game")).toBeTruthy();
-    const tableEl = document.querySelectorAll("td");
-    tableEl[5].dispatchEvent(new Event("click"));
-
+    expect(document.querySelector("table")).toBeTruthy();
     btn.dispatchEvent(new Event("click"));
     expect(setInterval).toHaveBeenCalledTimes(1);
-    expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 800);
+    expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1200);
   });
   it("changing the field size", () => {
     createGameOfLife(el);
     expect(document.querySelector(".game")).toBeTruthy();
     inputWidth.value = "25";
+    inputHight.value = "30";
+    inputWidth.dispatchEvent(new Event("input"));
+    inputHight.dispatchEvent(new Event("input"));
+
+    let arrField = Array.from(
+      // @ts-ignore
+      document.querySelector("table").rows,
+      (row) => Array.from(row.cells)
+    );
+    expect(arrField.length).toBe(30);
+    expect(arrField[1].length).toBe(25);
+
+  });
+  it("changing the speed of work", () => {
+    // const element= el.querySelector(".game");
+    createGameOfLife(el);
     inputHight.value = "25";
-    const btnSize = document.querySelector(".form-btn") as HTMLElement;
-    btnSize.dispatchEvent(new Event("click"));
+    inputHight.dispatchEvent(new Event("input"));
+    inputWidth.value = " ";
+    inputWidth.dispatchEvent(new Event("input"));
     let arrField = Array.from(
       // @ts-ignore
       document.querySelector("table").rows,
       (row) => Array.from(row.cells)
     );
     expect(arrField.length).toBe(25);
-    expect(arrField[1].length).toBe(25);
+    expect(arrField[0].length).toBe(10);
 
-    inputHight.value = "25";
-    inputHight.value = "";
-    btnSize.dispatchEvent(new Event("click"));
-    arrField = Array.from(
-      // @ts-ignore
-      document.querySelector("table").rows,
-      (row) => Array.from(row.cells)
-    );
-    expect(arrField.length).toBe(25);
-    expect(arrField[1].length).toBe(20);
-  });
-  it("changing the speed of work", () => {
-    // const element= el.querySelector(".game");
-    createGameOfLife(el);
     expect(document.querySelector(".game")).toBeTruthy();
     const inputRange = document.querySelector(
       ".game__input-range"
@@ -100,6 +100,6 @@ describe("", () => {
     inputRange.value = "14";
     inputRange.dispatchEvent(new Event("input"));
     expect(setInterval).toHaveBeenCalledTimes(2);
-    expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1400);
+    expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 600);
   });
 });
