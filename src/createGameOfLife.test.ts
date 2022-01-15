@@ -73,7 +73,6 @@ describe("", () => {
     );
     expect(arrField.length).toBe(30);
     expect(arrField[1].length).toBe(25);
-
   });
   it("changing the speed of work", () => {
     // const element= el.querySelector(".game");
