@@ -1,10 +1,10 @@
-export function startLife(): { arrActiv: string[]; arrUNactiv: string[]; } {
+export function startLife(): { arrActiv: string[]; arrUNactiv: string[] } {
   let arrField = Array.from(
     // @ts-ignore
     document.querySelector("table").rows,
     (row) => Array.from(row.cells)
   );
-  console.log(arrField)
+  console.log(arrField);
   let nextStep: { arrActiv: string[]; arrUNactiv: string[] } = {
     arrActiv: [],
     arrUNactiv: [],
@@ -43,5 +43,5 @@ export function startLife(): { arrActiv: string[]; arrUNactiv: string[]; } {
       return false;
     }
   }
-  return nextStep
+  return nextStep;
 }

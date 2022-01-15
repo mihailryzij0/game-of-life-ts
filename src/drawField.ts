@@ -1,4 +1,9 @@
-export function drawField(htmlElement: HTMLElement, width:number, haight:number, g?:{ arrActiv: string[]; arrUNactiv: string[]; }) {
+export function drawField(
+  htmlElement: HTMLElement,
+  width: number,
+  haight: number,
+  g?: { arrActiv: string[]; arrUNactiv: string[] }
+) {
   let field = Array.from({ length: width }).map(
     () => Array.from({ length: haight }).fill(0) as number[]
   );
@@ -19,15 +24,15 @@ export function drawField(htmlElement: HTMLElement, width:number, haight:number,
       el.classList.toggle("activ");
     });
   });
-  if(g){
+  if (g) {
     let arrField = Array.from(
       // @ts-ignore
       document.querySelector("table").rows,
       (row) => Array.from(row.cells)
     );
-  g.arrActiv.forEach((element) => {
-    let [x, y] = element.split(":");
-    arrField[+x][+y].classList.add("activ");
-  });
-}
+    g.arrActiv.forEach((element) => {
+      let [x, y] = element.split(":");
+      arrField[+x][+y].classList.add("activ");
+    });
+  }
 }

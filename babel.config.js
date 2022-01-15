@@ -10,7 +10,5 @@ module.exports = {
     ],
     "@babel/preset-typescript",
   ],
-  "plugins": [
-    ["@babel/transform-runtime"]
-]
+  plugins: [["@babel/transform-runtime"]],
 };

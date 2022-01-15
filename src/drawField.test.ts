@@ -1,13 +1,13 @@
 import { drawField } from "./drawField";
 
 describe("createGameOfLife", () => {
-  let el:HTMLElement;
+  let el: HTMLElement;
   beforeEach(() => {
     el = document.createElement("div");
     document.body.append(el);
   });
   afterEach(() => {
-     // @ts-ignore
+    // @ts-ignore
     document.querySelector("div").innerHTML = null;
   });
 
