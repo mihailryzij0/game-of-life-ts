@@ -1,22 +1,21 @@
-export function startLife(): void {
+export function startLife(): { arrActiv: string[]; arrUNactiv: string[]; } {
   let arrField = Array.from(
     // @ts-ignore
     document.querySelector("table").rows,
-    (row) => Array.from(row.cells) as HTMLTableCellElement[]
+    (row) => Array.from(row.cells)
   );
+  console.log(arrField)
   let nextStep: { arrActiv: string[]; arrUNactiv: string[] } = {
     arrActiv: [],
     arrUNactiv: [],
   };
 
   for (let i = 0; i < arrField.length; i += 1) {
-    //rows
     for (let j = 0; j < arrField[i].length; j += 1) {
-      //column
       let neighbors = 0;
       for (let column = i - 1; column <= i + 1; column += 1) {
         for (let rows = j - 1; rows <= j + 1; rows += 1) {
-          if (findNeighbors(column, rows)) {
+          if (ht(column, rows)) {
             neighbors += 1;
           }
         }
@@ -37,11 +36,12 @@ export function startLife(): void {
     arrField[+x][+y].classList.remove("activ");
   });
 
-  function findNeighbors(i: number, j: number) {
-    if (j in arrField && i in arrField[j]) {
-      return arrField[i][j].classList.contains("activ");
+  function ht(i: number, j: number) {
+    if (i in arrField && j in arrField[i]) {
+      return arrField[i][j].className === "activ";
     } else {
       return false;
     }
   }
+  return nextStep
 }

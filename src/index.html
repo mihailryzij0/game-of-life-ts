@@ -13,23 +13,26 @@
       <div class="game__control">
         <button class="game__btn">Start</button>
         <label for="">Скорость</label>
-        <input class="game__input-range" min="5" max="20" type="range" />
+        <input class="game__input-range" value="10"  max="15" min="5" type="range" />
         <div class="game__size">
           <label for="">Высота</label>
           <input
             type="number"
-            max="31"
+            min="10"
+            max="30"
+            value="20"
             placeholder="max = 30"
             class="game__input-width"
           />
           <label for="">Ширина</label>
           <input
             type="number"
-            max="31"
+            value="20"
+            max="30"
+            min="10"
             placeholder="max = 30"
             class="game__input-height"
           />
-          <button class="form-btn">установить</button>
         </div>
       </div>
     </div>
