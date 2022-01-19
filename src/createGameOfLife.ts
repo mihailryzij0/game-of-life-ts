@@ -1,16 +1,18 @@
 import { drawField } from "./drawField";
 import { startLife } from "./startLife";
+
 export function createGameOfLife(el: HTMLElement) {
   const field = el.querySelector(".game__wrapper") as HTMLElement;
   const inputRange = el.querySelector(".game__input-range") as HTMLInputElement;
   const inputWidth = el.querySelector(".game__input-width") as HTMLInputElement;
-  let objActivCell: { arrActiv: string[]; arrUNactiv: string[] };
+  let objActivCell: { arrActiv: string[]; arrUNactiv: string[] } | undefined;
   const inputHaight = el.querySelector(
     ".game__input-height"
   ) as HTMLInputElement;
   const btn = el.querySelector(".game__btn") as HTMLElement;
   let gameIsRunning = false;
-  let timer: ReturnType<typeof setTimeout>;
+  let gameSpeed = (20 - inputRange.valueAsNumber) * 100;
+  let timer: ReturnType<typeof window.setTimeout>;
   let width = inputWidth.valueAsNumber;
   let haight = inputHaight.valueAsNumber;
   inputWidth.addEventListener("input", () => {
@@ -31,19 +33,6 @@ export function createGameOfLife(el: HTMLElement) {
   });
 
   drawField(field, haight, width);
-  btn.addEventListener("click", () => {
-    if (gameIsRunning == false) {
-      startGame();
-    } else {
-      stopGame();
-    }
-  });
-
-  inputRange.addEventListener("input", () => {
-    clearInterval(timer);
-    startGame();
-  });
-
   function stopGame() {
     gameIsRunning = false;
     clearInterval(timer);
@@ -53,12 +42,26 @@ export function createGameOfLife(el: HTMLElement) {
     gameIsRunning = true;
     btn.innerHTML = "Stop";
     timer = setInterval(() => {
-      let activeСell = document.querySelector(".activ");
+      const activeСell = document.querySelector(".activ");
       if (activeСell === null) {
         stopGame();
       } else {
         objActivCell = startLife();
       }
-    }, (20 - inputRange.valueAsNumber) * 100);
+    }, gameSpeed);
   }
+
+  btn.addEventListener("click", () => {
+    if (gameIsRunning === false) {
+      startGame();
+    } else {
+      stopGame();
+    }
+  });
+
+  inputRange.addEventListener("input", () => {
+    clearInterval(timer);
+    startGame();
+    gameSpeed = (20 - inputRange.valueAsNumber) * 100;
+  });
 }

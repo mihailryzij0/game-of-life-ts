@@ -7,8 +7,10 @@ describe("createGameOfLife", () => {
     document.body.append(el);
   });
   afterEach(() => {
-    // @ts-ignore
-    document.querySelector("div").innerHTML = null;
+    const div = document.querySelector("div");
+    if (div) {
+      div.remove();
+    }
   });
 
   it("building a playing field", () => {

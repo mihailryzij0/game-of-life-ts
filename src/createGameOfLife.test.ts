@@ -1,7 +1,9 @@
 import { createGameOfLife } from "./createGameOfLife";
+
 let inputWidth: HTMLInputElement;
 let inputHight: HTMLInputElement;
 let btn: HTMLElement;
+let arrField: HTMLTableCellElement[][];
 describe("", () => {
   let el: HTMLElement;
   beforeEach(() => {
@@ -47,8 +49,10 @@ describe("", () => {
   jest.useFakeTimers();
   jest.spyOn(global, "setInterval");
   afterEach(() => {
-    // @ts-ignore
-    document.querySelector("div").innerHTML = null;
+    const div = document.querySelector("div");
+    if (div) {
+      div.remove();
+    }
   });
   it("changing the speed of work", () => {
     createGameOfLife(el);
@@ -66,11 +70,10 @@ describe("", () => {
     inputWidth.dispatchEvent(new Event("input"));
     inputHight.dispatchEvent(new Event("input"));
 
-    let arrField = Array.from(
-      // @ts-ignore
-      document.querySelector("table").rows,
-      (row) => Array.from(row.cells)
-    );
+    const table = document.querySelector("table");
+    if (table) {
+      arrField = Array.from(table.rows, (row) => Array.from(row.cells));
+    }
     expect(arrField.length).toBe(30);
     expect(arrField[1].length).toBe(25);
   });
@@ -81,11 +84,10 @@ describe("", () => {
     inputHight.dispatchEvent(new Event("input"));
     inputWidth.value = " ";
     inputWidth.dispatchEvent(new Event("input"));
-    let arrField = Array.from(
-      // @ts-ignore
-      document.querySelector("table").rows,
-      (row) => Array.from(row.cells)
-    );
+    const table = document.querySelector("table");
+    if (table) {
+      arrField = Array.from(table.rows, (row) => Array.from(row.cells));
+    }
     expect(arrField.length).toBe(25);
     expect(arrField[0].length).toBe(10);
 
@@ -99,6 +101,6 @@ describe("", () => {
     inputRange.value = "14";
     inputRange.dispatchEvent(new Event("input"));
     expect(setInterval).toHaveBeenCalledTimes(2);
-    expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 600);
+    expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1200);
   });
 });

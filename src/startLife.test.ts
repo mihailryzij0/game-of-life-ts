@@ -2,28 +2,50 @@ import { startLife } from "./startLife";
 import { drawField } from "./drawField";
 
 describe("drawField", () => {
+  let arrField: HTMLTableCellElement[][];
   let el: HTMLElement;
   beforeEach(() => {
     el = document.createElement("div");
     document.body.append(el);
   });
   afterEach(() => {
-    // @ts-ignore
-    document.querySelector("div").innerHTML = null;
+    const div = document.querySelector("div");
+    if (div) {
+      div.remove();
+    }
   });
 
   it("checking class changes", () => {
     drawField(el, 20, 20);
-    const tableEl = document.querySelectorAll("td");
-    tableEl[130].dispatchEvent(new Event("click"));
-    tableEl[150].dispatchEvent(new Event("click"));
-    tableEl[170].dispatchEvent(new Event("click"));
+    const table = document.querySelector("table");
+    if (table) {
+      arrField = Array.from(table.rows, (row) => Array.from(row.cells));
+    }
+    arrField[6][6].dispatchEvent(new Event("click"));
+    arrField[6][8].dispatchEvent(new Event("click"));
+    arrField[7][7].dispatchEvent(new Event("click"));
+    arrField[7][8].dispatchEvent(new Event("click"));
+    arrField[8][7].dispatchEvent(new Event("click"));
+
     startLife();
-    tableEl[149].classList.contains("activ");
-    tableEl[150].classList.contains("activ");
-    tableEl[151].classList.contains("activ");
-    expect(tableEl[151].classList.contains("activ")).toBeTruthy();
-    expect(tableEl[150].classList.contains("activ")).toBeTruthy();
-    expect(tableEl[149].classList.contains("activ")).toBeTruthy();
+    expect(arrField[6][8].classList.contains("activ")).toBeTruthy();
+    expect(arrField[7][6].classList.contains("activ")).toBeTruthy();
+    expect(arrField[7][8].classList.contains("activ")).toBeTruthy();
+    expect(arrField[8][7].classList.contains("activ")).toBeTruthy();
+    expect(arrField[8][8].classList.contains("activ")).toBeTruthy();
+
+    startLife();
+    expect(arrField[6][7].classList.contains("activ")).toBeTruthy();
+    expect(arrField[7][8].classList.contains("activ")).toBeTruthy();
+    expect(arrField[7][9].classList.contains("activ")).toBeTruthy();
+    expect(arrField[8][7].classList.contains("activ")).toBeTruthy();
+    expect(arrField[8][8].classList.contains("activ")).toBeTruthy();
+
+    startLife();
+    expect(arrField[6][8].classList.contains("activ")).toBeTruthy();
+    expect(arrField[7][9].classList.contains("activ")).toBeTruthy();
+    expect(arrField[8][7].classList.contains("activ")).toBeTruthy();
+    expect(arrField[8][8].classList.contains("activ")).toBeTruthy();
+    expect(arrField[8][9].classList.contains("activ")).toBeTruthy();
   });
 });
