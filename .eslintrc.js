@@ -21,6 +21,7 @@ module.exports = {
     "import/prefer-default-export": "off",
     "no-unused-expressions": "off",
     "no-promise-executor-return": "off",
+    "func-names": "off",
     "max-len": [
       "error",
       {
