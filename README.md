@@ -1,6 +1,6 @@
 # "Ира Жизнь"
 
-Приложение работает с условиями всех правил игры, дополнительно реализовано изменение размеров поля и скорости игры.  
+Приложение работает с условиями всех правил игры, дополнительно реализовано изменение размеров поля и скорости игры.
 
 [![Sanity Check](https://github.com/mihailryzij0/game-of-life-ts/actions/workflows/sanity-check.yml/badge.svg?branch=hw/9)](https://github.com/mihailryzij0/game-of-life-ts/actions/workflows/sanity-check.yml)
 
@@ -8,10 +8,8 @@
 
 [![Sanity Check](https://github.com/mihailryzij0/game-of-life-ts/actions/workflows/coverage.yml/badge.svg?branch=hw/9)](https://github.com/mihailryzij0/game-of-life-ts/actions/workflows/coverage.yml)
 
-- npm i  
-  
-- npm run build  
-  
+- npm i
+- npm run build
 - npm run dev
 
 Ссылка на приложение https://mihailryzij0.github.io/game-of-life-ts/
