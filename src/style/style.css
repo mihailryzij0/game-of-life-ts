@@ -1,0 +1,59 @@
+.game {
+  max-width: max-content;
+  margin: 0 auto;
+  text-align: center;
+}
+body {
+  background-color: rgba(64, 224, 208, 0.481);
+}
+.game__control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.game__size {
+  display: flex;
+  margin-top: 20px;
+}
+TABLE {
+  border: 4px double rgb(255, 0, 128);
+  border-radius: 20px;
+  background: rgba(170, 0, 255, 0.323);
+  padding: 5px;
+}
+
+td::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  width: 5px;
+  height: 5px;
+  background-color: aliceblue;
+  border-radius: 50%;
+}
+.activ {
+  background-color: red;
+}
+td.activ {
+  transform: rotate(360deg);
+}
+TD {
+  padding: 5px; /* Поля вокруг текста */
+  border: 2px solid white;
+  transition: 0.3s ease;
+  border-radius: 50%;
+  position: relative;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  margin: 3px;
+}
+.game__btn {
+  width: 50%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: rgba(170, 0, 255, 0.323);
+  padding: 20px;
+  border-radius: 30%;
+}
